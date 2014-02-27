@@ -1,0 +1,45 @@
+// template //
+
+{
+
+  "header" : {
+    "titre": "",
+    "id" : "",
+    "description" : "",
+    "image" : ""
+  },
+  
+  "sections" : [
+    {
+      "label" : "section1",      
+      "containers" : [
+        {
+          "label" : "container1",
+          "items" : []
+        },
+        {
+          "label" : "container2",
+          "items" : []
+        } 
+      ]
+    },
+
+    {
+      "label" : "section2",      
+      "containers" : [
+        {
+          "label" : "container1",
+          "items" : []
+        },
+        {
+          "label" : "container2",
+          "items" : []
+        } 
+      ]
+    }
+
+  ]
+
+}
+
+

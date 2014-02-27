@@ -1,0 +1,65 @@
+{
+    "@context": {
+        "geneid_vocabulary": "http://bio2rdf.org/geneid_vocabulary:",
+        "bm": "http://bio2rdf.org/",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "oboInOwl": "http://www.geneontology.org/formats/oboInOwl#"
+    },
+    "@id": "http://purl.obolibrary.org/obo/DOID_2841",
+    "@type": "owl:Class",
+    "http://purl.obolibrary.org/obo/IAO_0000115": "A bronchial disease that is characterized by chronic inflammation and narrowing of the airways, which is caused by a combination of environmental and genetic factors. The disease has_symptomrecurring periods of wheezing (a whistling sound while breathing), has_symptom chest tightness, has_symptom shortness of breath, has_symptom mucus production and has_symptom coughing. The symptoms appear due to a variety of triggers such as allergens, irritants, respiratory infections, weather changes, excercise, stress, reflux disease, medications, foods and emotional anxiety.",
+    "oboInOwl:hasAlternativeId": [
+        "DOID:12703",
+        "DOID:13829",
+        "DOID:5783",
+        "DOID:13830",
+        "DOID:2840"
+    ],
+    "oboInOwl:hasDbXref": [
+        "SNOMEDCT_2010_1_31:187687003",
+        "ICD9CM:493",
+        "UMLS_CUI:C0004096",
+        "ICD9CM:493.9",
+        "SNOMEDCT_2010_1_31:155574008",
+        "SNOMEDCT_2010_1_31:195967001",
+        "SNOMEDCT_2010_1_31:21341004",
+        "MSH:D001249",
+        "SNOMEDCT_2010_1_31:266365004",
+        "EFO:0000270",
+        "SNOMEDCT_2010_1_31:155579003",
+        "SNOMEDCT_2010_1_31:266398009",
+        "SNOMEDCT_2010_1_31:195983001",
+        "SNOMEDCT_2010_1_31:278517007",
+        "SNOMEDCT_2010_1_31:195979001",
+        "NCI:C28397",
+        "KEGG:05310"
+    ],
+    "oboInOwl:hasExactSynonym": [
+        "Exercise-induced asthma (disorder)",
+        "bronchial hyperreactivity",
+        "Bronchial hypersensitivity",
+        "chronic obstructive asthma with status asthmaticus",
+        "chronic obstructive asthma",
+        "Exercise induced asthma",
+        "chronic obstructive asthma with acute exacerbation",
+        "Exercise-induced asthma",
+        "exercise-induced asthma"
+    ],
+    "oboInOwl:hasOBONamespace": "disease_ontology",
+    "oboInOwl:id": "DOID:2841",
+    "rdfs:comment": "A bronchial disease that is characterized by chronic inflammation and narrowing of the airways, which is caused by a combination of environmental and genetic factors. The disease has_symptomrecurring periods of wheezing (a whistling sound while breathing), has_symptom chest tightness, has_symptom shortness of breath, has_symptom mucus production and has_symptom coughing. The symptoms appear due to a variety of triggers such as allergens, irritants, respiratory infections, weather changes, excercise, stress, reflux disease, medications, foods and emotional anxiety.",
+    "rdfs:label": "asthma",
+    "rdfs:subClassOf": [
+        {
+            "@id": "http://purl.obolibrary.org/obo/DOID_1176"
+        },
+        {
+            "@id": "http://purl.obolibrary.org/obo/DOID_2320"
+        }
+    ]
+}
+
+
