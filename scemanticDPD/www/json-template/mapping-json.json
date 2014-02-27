@@ -1,0 +1,179 @@
+
+/* ORIGINAL JSONLD FETCH W/ QUERYER FROM THE REST SERVICE */
+
+jsonld = {
+  "@context": {
+    "geneid_vocabulary": "http://bio2rdf.org/geneid_vocabulary:",
+    "bm": "http://bio2rdf.org/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "dc": "http://purl.org/dc/elements/1.1/",
+    "oboInOwl": "http://www.geneontology.org/formats/oboInOwl#"
+  },
+  "@id": "http://purl.obolibrary.org/obo/CHEBI_49167",
+  "@type": "owl:Class",
+  "http://purl.obolibrary.org/obo/IAO_0000115": "A drug used to treat asthma.",
+  "oboInOwl:hasOBONamespace": "chebi_ontology",
+  "oboInOwl:hasRelatedSynonym": [
+    "anti-asthmatic agents",
+    "anti-asthmatic agent",
+    "anti-asthmatic drugs"
+  ],
+  "oboInOwl:id": "CHEBI:49167",
+  "rdfs:comment": "A drug used to treat asthma.",
+  "rdfs:label": "anti-asthmatic drug",
+  "rdfs:subClassOf": [
+    {
+      "@id": "http://purl.obolibrary.org/obo/CHEBI_65023"
+    },
+    {
+      "@id": "http://purl.obolibrary.org/obo/CHEBI_23888"
+    }
+  ],
+  "oboInOwl:hasDbXref": [
+    {
+      "@id": "http://purl.obolibrary.org/obo/DIO_XXXXX"
+    }
+  ]
+
+}
+
+
+/* MAPPING OBJECT FOR TRANSLATOR */
+{
+  "header" : {
+    "title": "solution.rdfs:label",
+    "id" : "solution.@id", //
+    "description" : "solution.rdfs:comment",
+    "namespace": "solution.oboInOwl:hasOBONamespace"
+  },
+
+  "sections" : [
+    {
+      "label" : "Information",
+      "containers" : [
+        {
+          "label" : "Related Synonyms", // oboInOwl:hasRelatedSynonym
+          "itemType": "litteral"        // array of String
+          "items" : [
+            "anti-asthmatic agents",
+            "anti-asthmatic agent",
+            "anti-asthmatic drugs"
+          ]
+        },
+        {
+          "label" : "SuperClasses",  // subClassOf
+          "itemType": "uri"        // array of URI
+          "items": [
+            {
+              "label": "anti-asthmatic agent", // Need to be fetch by translator if N/A
+              "uri": "http://purl.obolibrary.org/obo/CHEBI_65023"
+            },
+            {
+              "label": "drug",
+              "uri": "http://purl.obolibrary.org/obo/CHEBI_23888"
+            }
+          ]
+        },
+        {
+          // SubClass might not come with the jsonld Describe .. fetch w/ translator
+          "label": "SubClasses",
+          "itemType": "uri",
+          "items": [
+            {
+              "label": "drug to treat a disease",
+              "uri": "http://purl.obolibrary.org/obo/DIO_XXXXX"
+            }
+          ]
+        },
+        {
+          "label": "Cross References",
+          "itemType": "uri",
+          "items": [
+            {
+              "label": "drug to treat a disease",
+              "uri": "http://purl.obolibrary.org/obo/DIO_XXXXX"
+            }
+          ]
+        }
+
+      ]
+    }
+  ]
+
+}
+
+
+
+
+/* RESULTS JSON OBJECT FOR VIEWER */
+/* Look if variable is defined ? if jsonObj.has("image") */
+
+{
+
+  "header" : {
+    "title": "anti-asthmatic drug", // rdfs:label
+    "id" : "http://purl.obolibrary.org/obo/CHEBI_49167", // @id (level 1)
+    "description" : "A drug used to treat asthma.",      // rdfs:comment
+    "image" : ""                                      // foaf:depiction
+    "namespace": "chebi_ontology"             // oboInOwl:hasOBONamespace
+  },
+
+
+  "sections" : [
+    {
+      "label" : "Information",
+      "containers" : [
+        {
+          "label" : "Related Synonyms", // oboInOwl:hasRelatedSynony
+          "itemType": "litteral"        // array of String
+          "items" : [
+            "anti-asthmatic agents",
+            "anti-asthmatic agent",
+            "anti-asthmatic drugs"
+          ]
+        },
+        {
+          "label" : "SuperClasses",  // subClassOf
+          "itemType": "uri"        // array of URI
+          "items": [
+            {
+              "label": "anti-asthmatic agent", // Need to be fetch by translator if N/A
+              "uri": "http://purl.obolibrary.org/obo/CHEBI_65023"
+            },
+            {
+              "label": "drug",
+              "uri": "http://purl.obolibrary.org/obo/CHEBI_23888"
+            }
+          ]
+        },
+        {
+          // SubClass might not come with the jsonld Describe .. fetch w/ translator
+          "label": "SubClasses",
+          "itemType": "uri",
+          "items": [
+            {
+              "label": "drug to treat a disease",
+              "uri": "http://purl.obolibrary.org/obo/DIO_XXXXX"
+              {
+              }
+            ]
+          },
+          {
+            "label": "Cross References",
+            "itemType": "uri",
+            "items": [
+              {
+                "label": "drug to treat a disease",
+                "uri": "http://purl.obolibrary.org/obo/DIO_XXXXX"
+              }
+            ]
+          }
+
+        ]
+      }
+    ]
+
+  }
+}

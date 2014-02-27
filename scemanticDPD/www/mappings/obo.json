@@ -1,0 +1,25 @@
+{
+	"header" : [
+		{"title": "rdfs:label"},
+		{"id" : "@id"},
+		{"description" : "rdfs:comment"},
+		{"namespace": "oboInOwl:hasOBONamespace"}
+	],
+	"sections" : [
+		{
+"label" : "Information",
+"containers" : [
+	{
+		"label" : "Related Synonyms", // oboInOwl:hasRelatedSynonym
+		"itemType": "literal",        // array of String
+		"match" : "oboInOwl:hasRelatedSynonym"
+	},
+	{
+		"label" : "SuperClasses", // rdfs:subClassOf
+		"itemType": "uri",        // array of URI
+		"match" : "rdfs:subClassOf"
+	}
+]
+		}
+	]
+}
