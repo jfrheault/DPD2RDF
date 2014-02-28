@@ -116,6 +116,7 @@ Viewer.prototype.generateFooters = function(){
   NA
 */
 Viewer.prototype.refreshPage = function(pageObject) {
+	console.log(pageObject)
   $("#sections").html("");
   var header = pageObject.header;
   var sections = pageObject.sections;
@@ -169,7 +170,9 @@ Viewer.prototype.refreshPage = function(pageObject) {
 	    var item=container.items[itemIndex];
 	    uriTags.push("<a class='uriButton' uri='"+item.uri+"'>"+item.label+"</a>");
 	  }
-	  this.appendCollapsible("section"+sectionIndex,container.label,uriTags);
+		if (uriTags.length != 0) {
+			this.appendCollapsible("section"+sectionIndex,container.label,uriTags);
+		}
 	}
 	break;
       default:
