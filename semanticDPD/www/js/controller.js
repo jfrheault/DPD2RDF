@@ -18,7 +18,7 @@ function Controller() {
   this.translator = new Translator(mappingObj);
   this.viewer = new Viewer();
   this.queryer = new Queryer();
-  this.currentNamespace = "ontobee";
+  this.currentNamespace = "dpd";
 }
 
 /*
@@ -119,10 +119,9 @@ Controller.prototype.autoCompleteSearch = function(kword) {
   //console.log(kword);
 
   var urlConfig = { "namespace" : this.currentNamespace,
-                    "method" : "search_ns",
+                    "method" : "search_all",
                     "format" : "json-ld",
                     "parameters" : {
-                      "parm2" : "DOID",
                       "parm1" : kword
                     }
                   };
