@@ -78,7 +78,7 @@ Controller.prototype.describeURI = function(uri) {
   NA
 */
 Controller.prototype.parseJSONLD = function(jsonLD) {
-  console.log("jsonLD: " + jsonLD);
+ // console.log("jsonLD: " + jsonLD);
   this.viewer.refreshPage(this.translator.translate(jsonLD));
 }
 
@@ -95,7 +95,7 @@ Controller.prototype.mappertoolUpdate = function() {
     url: url,
     dataType: "jsonp",
     success: function(data) {
-      console.log(data);
+ //     console.log(data);
       controller.parseJSONLD(data);
     }
   });
@@ -116,7 +116,7 @@ Controller.prototype.mappertoolUpdate = function() {
 */
 Controller.prototype.autoCompleteSearch = function(kword) {
 
-  console.log(kword);
+  //console.log(kword);
 
   var urlConfig = { "namespace" : this.currentNamespace,
                     "method" : "search_ns",
@@ -132,7 +132,7 @@ Controller.prototype.autoCompleteSearch = function(kword) {
     context: this,
     dataType: "jsonp"
   }).done(function(data){
-    console.log(data);
+    //console.log(data);
     this.viewer.buildSearchListItems(data);
   });
   
@@ -196,7 +196,7 @@ Controller.prototype.fetchURL = function(restURL) {
     context: this,
     dataType: "jsonp"
   }).done(function(data){
-    console.log(data);
+    //console.log(data);
     this.parseJSONLD(data);
   });
 }
