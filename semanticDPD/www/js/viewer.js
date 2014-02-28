@@ -12,9 +12,9 @@ function Viewer() {
   this.pageTagList=["searchPage","describePage","aboutPage"];
   this.generateHeaders();
   this.generateFooters();
-	/*for (var i=0; i < this.pageTagList.length ;i++){*/
-	/*$("#"+this.pageTagList[i]).trigger('refresh');*/
-	/*}*/
+	for (var i=0; i < this.pageTagList.length ;i++){
+		$("#"+this.pageTagList[i]).trigger('refresh');
+	}
 }
 
 
@@ -32,18 +32,6 @@ function Viewer() {
 Viewer.prototype.generateHeaders = function(){
   var headerHTML = '<!-- HEADER HTML -->'
     +' 	<div id="header" data-position="fixed" data-id="persistent" class="ui-state-persist" data-role="header" data-theme="c">'
-    +'     <div data-role="popup" id="popupLogo" class="ui-content" style="overflow-y:scroll;">'
-    +'       <fieldset data-role="controlgroup" data-theme="b" id="dbPick" data-mini="true">'
-    +'         <input type="radio" name="radio-choice" id="radio-bio2rdf" value="bio2rdf" checked="true" />'
-    +'         <label for="radio-bio2rdf" style="text-align:center"><img src="img/bio2rdf.png" width="100px"></label>'
-    +'         <input type="radio" name="radio-choice" id="radio-go" value="go" />'
-    +'         <label for="radio-go" style="text-align:center"><img src="img/go.png" width="100px"></label>'
-    +'         <input type="radio" name="radio-choice" id="radio-do" value="do" />'
-    +'         <label for="radio-do" style="text-align:center"><img src="img/do.png" width="100px"></label>'
-    +'         <input type="radio" name="radio-choice" id="radio-chebi" value="chebi" />'
-    +'         <label for="radio-chebi" style="text-align:center"><img src="img/chebi.png" width="100px"></label>'
-    +'       </fieldset>'
-    +'     </div>'
     +'     <!-- Header Logo -->'
     +'     <h1 style="text-align:center;font-family:verdana;font-size:12px;font-style:italic">'
     +'       <a href="#popupLogo" data-rel="popup"><img id="logoHead" src="img/bio2rdf.png" width="80px"/></a>'
