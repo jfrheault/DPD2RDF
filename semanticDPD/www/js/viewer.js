@@ -116,7 +116,6 @@ Viewer.prototype.generateFooters = function(){
   NA
 */
 Viewer.prototype.refreshPage = function(pageObject) {
-	console.log(pageObject)
   $("#sections").html("");
   var header = pageObject.header;
   var sections = pageObject.sections;
