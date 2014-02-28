@@ -61,7 +61,7 @@ Viewer.prototype.generateHeaders = function(){
   NA
 */
 Viewer.prototype.generateFooters = function(){
-  var describeFooterHTML = '<div id="footer" data-id="persistent" data-role="footer" data-position="fixed" data-theme="c">'
+  var describeFooterHTML = '<div id="footer" data-id="persistent" data-role="footer" data-position="fixed" data-theme="c" style="position:fixed; bottom:0 !important;">'
     +'<div data-role="navbar">'
     +'	<ul>'
     +'		<li><a href="#searchPage" data-transition="slide" data-direction="reverse" data-icon="search">Search</a></li>'
@@ -71,7 +71,7 @@ Viewer.prototype.generateFooters = function(){
     +' 	</div><!-- /navbar -->'
     +' </div> <!-- FOOTER -->'
 
-  var searchFooterHTML = '<div id="footer" data-role="footer" data-id="persistent" data-position="fixed" data-theme="c">'
+  var searchFooterHTML = '<div id="footer" data-role="footer" data-id="persistent" data-position="fixed" data-theme="c" style="position:fixed; bottom:0 !important;">'
     +'<div data-role="navbar">'
     +'	<ul>'
     +'		<li><a href="#searchPage" class="ui-btn-active ui-state-persist"  data-icon="search">Search</a></li>'
@@ -81,7 +81,7 @@ Viewer.prototype.generateFooters = function(){
     +'</div><!-- /navbar -->'
     +'</div> <!-- FOOTER -->'
   
-  var aboutFooterHTML = '<div id="footer" data-role="footer" data-id="persistent" data-position="fixed" data-theme="c">'
+  var aboutFooterHTML = '<div id="footer" data-role="footer" data-id="persistent" data-position="fixed" data-theme="c" style="position:fixed; bottom:0 !important;">'
     +'<div data-role="navbar">'
     +'	<ul>'
     +'		<li><a href="#searchPage" data-transition="slide" data-direction="reverse" data-icon="search">Search</a></li>'
