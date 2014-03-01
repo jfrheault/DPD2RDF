@@ -7,6 +7,12 @@ function eventBindings(){
   $(document).on("keyup",".sBar", function() {
     controller.autoCompleteSearch($(this).val());
   });
+  $(document).on("click", ".uriButton", function(){
+		controller.updateMappings(atcMap);
+    controller.describeATC($(this).attr('uri'));
+    $.mobile.navigate("#describePage", {transition : "slide"});
+    return false;
+  });
 
   $(document).on("click", ".atcType", function(){
 		controller.updateMappings(atcMap);
