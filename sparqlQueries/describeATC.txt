@@ -1,0 +1,17 @@
+CONSTRUCT {
+<http://bio2rdf.org/atc:R03AC02> ?p1 ?o1 .
+<http://bio2rdf.org/atc:R03AC02> ?p2 ?s2 .
+}
+WHERE {
+<http://bio2rdf.org/atc:R03AC02> ?p1 ?o1 .
+?s2 ?p2 <http://bio2rdf.org/atc:R03AC02> . 
+}
+
+CONSTRUCT {
+<$URI$> ?p1 ?o1 .
+<$URI$> ?p3 ?s2 .
+}
+WHERE {
+<$URI$> ?p1 ?o1 .
+?s2 ?p2 <$URI$> . 
+}

@@ -260,9 +260,9 @@ Viewer.prototype.searchResultsIterator = function(data,$listview) {
       label = itemsArray[i]["oboInOwl:hasExactSynonym"];
     }
     var idA = id.split(":");
+		var uriType = idA[1];
     uri = context[idA[0]] + idA.slice(1).join(":");
-		console.log(uri)
-    $listview.append(this.buildButton(uri,label));
+    $listview.append(this.buildButton(uri,uriType,label));
   }
 
 }
@@ -287,6 +287,7 @@ Viewer.prototype.extractContext = function(context, atIdObject) {
 }
 
 // Build button for searcher
-Viewer.prototype.buildButton = function(uri,label){
-  return "<li class='uriButton' "+"uri='"+uri+"'>"+"<a>"+label+"</a></li>";
+Viewer.prototype.buildButton = function(uri,uriType,label){
+  return "<li class='uriButton' "+"uri='"+uri+"' class='"+uriType+"Type'>"+"<a>"+label+"</a></li>";
+
 }

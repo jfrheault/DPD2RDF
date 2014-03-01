@@ -1,0 +1,17 @@
+CONSTRUCT {
+<http://bio2rdf.org/din:02245669> rdfs:label ?obj .
+<http://bio2rdf.org/din:02245669> ?p ?o .
+} WHERE { 
+<http://bio2rdf.org/din:02245669> rdfs:label ?obj .
+?subject <http://bio2rdf.org/dpd:xDRUG_IDENTIFICATION_NUMBER> <http://bio2rdf.org/din:02245669> .
+?subject ?p ?o
+}
+
+CONSTRUCT {
+<$URI$> rdfs:label ?obj .
+<$URI$> ?p ?o .
+} WHERE { 
+<$URI$> rdfs:label ?obj .
+?subject <http://bio2rdf.org/dpd:xDRUG_IDENTIFICATION_NUMBER> <$URI$> .
+?subject ?p ?o
+}
