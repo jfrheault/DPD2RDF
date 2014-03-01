@@ -34,7 +34,8 @@ Viewer.prototype.generateHeaders = function(){
     +' 	<div id="header" data-position="fixed" data-id="persistent" class="ui-state-persist" data-role="header" data-theme="c">'
     +'     <!-- Header Logo -->'
     +'     <h1 style="text-align:center;font-family:verdana;font-size:12px;font-style:italic">'
-		+' 			DPD2RDF'
+		/*+' 			DPD2RDF'*/
+		+' 			 <img src="img/dpd_logo.png">'
 		/*+'       <a href="#popupLogo" data-rel="popup"><img id="logoHead" src="img/bio2rdf.png" width="80px"/></a>'*/
     +'     </h1>'
     +'     <div id="describeHeader">'
