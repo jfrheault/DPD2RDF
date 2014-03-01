@@ -259,8 +259,9 @@ Viewer.prototype.searchResultsIterator = function(data,$listview) {
     if(label ==  undefined){
       label = itemsArray[i]["oboInOwl:hasExactSynonym"];
     }
-    var idA = id.split(":",1);
-    uri = context[idA[0]] + idA[1];
+    var idA = id.split(":");
+    uri = context[idA[0]] + idA.slice(1).join(":");
+		console.log(uri)
     $listview.append(this.buildButton(uri,label));
   }
 
