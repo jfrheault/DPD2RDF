@@ -35,7 +35,7 @@ Viewer.prototype.generateHeaders = function(){
     +'     <!-- Header Logo -->'
     +'     <h1 style="text-align:center;font-family:verdana;font-size:12px;font-style:italic">'
 		/*+' 			DPD2RDF'*/
-		+' 			 <img src="img/dpd_logo.png">'
+		+' 			 <img src="img/dpd_logo.png" style="width: 40%; height: 40%">'
 		/*+'       <a href="#popupLogo" data-rel="popup"><img id="logoHead" src="img/bio2rdf.png" width="80px"/></a>'*/
     +'     </h1>'
     +'     <div id="describeHeader">'
@@ -261,13 +261,32 @@ Viewer.prototype.searchResultsIterator = function(data,$listview) {
       label = itemsArray[i]["oboInOwl:hasExactSynonym"];
     }
     var idA = id.split(":");
-		var uriType = idA[1];
     uri = context[idA[0]] + idA.slice(1).join(":");
+		var uriType=this.getUriType(uri);
     $listview.append(this.buildButton(uri,uriType,label));
   }
 
 }
 
+Viewer.prototype.getUriType = function(uri) {
+	uriElements=uri.split(":");
+	var type = "default"
+	console.log(uriElements.slice(0,2).join(":"));
+	switch(uriElements.slice(0,1).join(":")){
+		case "http://bio2rdf.org/din":
+			type = "din"
+			break;
+		case "http://bio2rdf.org/atc":
+			type = "atc"
+			break;
+		case "http://bio2rdf.org/drugbank":
+			type = "drugBank"
+			break;
+		default:
+			type = "default"
+	}
+	return type;
+}
 
 /*
 
@@ -289,6 +308,5 @@ Viewer.prototype.extractContext = function(context, atIdObject) {
 
 // Build button for searcher
 Viewer.prototype.buildButton = function(uri,uriType,label){
-  return "<li class='uriButton' "+"uri='"+uri+"' class='"+uriType+"Type'>"+"<a>"+label+"</a></li>";
-
+  return "<li class='uriButton"+uriType+"' "+"uri='"+uri+"'>"+"<a>"+label+"</a></li>";
 }

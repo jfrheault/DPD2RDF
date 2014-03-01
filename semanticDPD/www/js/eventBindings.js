@@ -7,20 +7,20 @@ function eventBindings(){
   $(document).on("keyup",".sBar", function() {
     controller.autoCompleteSearch($(this).val());
   });
-  $(document).on("click", ".uriButton", function(){
-		controller.updateMappings(atcMap);
-    controller.describeATC($(this).attr('uri'));
+  $(document).on("click", ".uriButtondefault", function(){
+		controller.updateMappings(mappingObj);
+    controller.describeURI($(this).attr('uri'));
     $.mobile.navigate("#describePage", {transition : "slide"});
     return false;
   });
 
-  $(document).on("click", ".atcType", function(){
+  $(document).on("click", ".uriButtonatc", function(){
 		controller.updateMappings(atcMap);
     controller.describeATC($(this).attr('uri'));
     $.mobile.navigate("#describePage", {transition : "slide"});
     return false;
   });
-  $(document).on("click", ".dinType", function(){
+  $(document).on("click", ".uriButtondin", function(){
     controller.describeDIN($(this).attr('uri'));
     $.mobile.navigate("#describePage", {transition : "slide"});
     return false;
