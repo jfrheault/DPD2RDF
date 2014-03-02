@@ -26,5 +26,11 @@ function eventBindings(){
     $.mobile.navigate("#describePage", {transition : "slide"});
     return false;
   });
+  $(document).on("click", ".uriButtondrugbank", function(){
+		controller.updateMappings(drugBankMap);
+    controller.describeDrugBank($(this).attr('uri'));
+    $.mobile.navigate("#describePage", {transition : "slide"});
+    return false;
+  });
 
 }

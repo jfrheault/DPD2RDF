@@ -63,7 +63,12 @@ Controller.prototype.describeATC = function(uri) {
 
 Controller.prototype.describeDIN = function(uri) {
 	console.log("describeDIN");
-  this.fetchURL(this.queryer.buildDescribe(this.currentNamespace, "describeDIN", uri));
+  this.fetchURL(this.queryer.buildDescribe(this.currentNamespace, "describe", uri));
+}
+
+Controller.prototype.describeDrugBank= function(uri) {
+	console.log("describeDrugBank");
+  this.fetchURL(this.queryer.buildDescribe(this.currentNamespace, "describe", uri));
 }
 
 /*
@@ -228,4 +233,27 @@ Controller.prototype.getLabel = function(uri) {
   }).done(function(data){
     return data["rdfs:label"];
   });
+}
+
+function getLitteral(obj) {
+	var value = "Unknown"
+	if (typeof obj == "object") {
+		if($.isArray(obj) == true){
+			for(var i=0; i < obj.length; i++){
+				if (obj[i]["@language"] == "en") {
+					value=obj[i]["@value"]
+				}
+			}
+		}
+		if($.isArray(obj) == false){
+			value=obj["@value"]
+		}
+	}
+	if (typeof obj != "object") {
+		value=obj
+	}
+	if (obj == undefined) {
+		value="Unknown: Undefined"
+	}
+	return value;
 }

@@ -30,6 +30,7 @@ Translator.prototype.updateMappings = function(mappingObj) {
 */
 Translator.prototype.translate = function(jsonld) {
   console.log(jsonld);
+	console.log(this.mappingObj)
   context = jsonld["@context"]
   atIdObject = {}
   this.extractContext(context,atIdObject);
@@ -41,11 +42,10 @@ Translator.prototype.translate = function(jsonld) {
   pageObject['header'] = [];
   for (var i in this.mappingObj.header) {
     for (var key in mappingObj.header[i]){
-
       var predicate = this.mappingObj.header[i][key];
       var elem = {};
-      elem[key] = jsonld[predicate];
-      pageObject['header'].push(elem);
+			elem[key] = getLitteral(jsonld[predicate]);
+			pageObject['header'].push(elem);
     }
   }
 

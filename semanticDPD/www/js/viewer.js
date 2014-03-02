@@ -257,7 +257,8 @@ Viewer.prototype.searchResultsIterator = function(data,$listview) {
 
   for (var i in itemsArray){
     id = itemsArray[i]["@id"];
-    label = itemsArray[i]["rdfs:label"];
+		console.log(getLitteral(itemsArray[i]["rdfs:label"]))
+    label = getLitteral(itemsArray[i]["rdfs:label"]);
     if(label ==  undefined){
       label = itemsArray[i]["oboInOwl:hasExactSynonym"];
     }
