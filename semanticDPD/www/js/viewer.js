@@ -169,7 +169,8 @@ Viewer.prototype.refreshPage = function(pageObject) {
 	  var uriTags=[];
 	  for (var itemIndex in container.items){
 	    var item=container.items[itemIndex];
-	    uriTags.push("<a class='uriButton' uri='"+item.uri+"'>"+item.label+"</a>");
+			console.log(item);
+	    uriTags.push("<a class='uriButtondefault' uri='"+item.uri+"'>"+item.label+"</a>");
 	  }
 		if (uriTags.length != 0) {
 			this.appendCollapsible("section"+sectionIndex,container.label,uriTags);
@@ -271,8 +272,7 @@ Viewer.prototype.searchResultsIterator = function(data,$listview) {
 Viewer.prototype.getUriType = function(uri) {
 	uriElements=uri.split(":");
 	var type = "default"
-	console.log(uriElements.slice(0,2).join(":"));
-	switch(uriElements.slice(0,1).join(":")){
+	switch(uriElements.slice(0,2).join(":")){
 		case "http://bio2rdf.org/din":
 			type = "din"
 			break;
@@ -310,3 +310,4 @@ Viewer.prototype.extractContext = function(context, atIdObject) {
 Viewer.prototype.buildButton = function(uri,uriType,label){
   return "<li class='uriButton"+uriType+"' "+"uri='"+uri+"'>"+"<a>"+label+"</a></li>";
 }
+

@@ -21,6 +21,7 @@ function eventBindings(){
     return false;
   });
   $(document).on("click", ".uriButtondin", function(){
+		controller.updateMappings(dinMap);
     controller.describeDIN($(this).attr('uri'));
     $.mobile.navigate("#describePage", {transition : "slide"});
     return false;

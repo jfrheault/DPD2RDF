@@ -4,13 +4,23 @@ var atcMap = {
 	],
 	"sections" : [
 		{
-"label" : "Found in :",
+"label" : "General information",
 "containers" : [
 	{
-		"label" : "Drug List", // oboInOwl:hasRelatedSynonym
+		"label" : " Informations on DrugBank :", // oboInOwl:hasRelatedSynonym
 		"itemType": "uri",        // array of String
-		"match" : "oboInOwl:hasRelatedSynonym"
+		"match" : "bm:drugbank_vocabulary:xref"
 	},
+	{
+		"label" : "Informations on Wikipedia :", // oboInOwl:hasRelatedSynonym
+		"itemType": "uri",        // array of String
+		"match" : "rdfs:seeAlso"
+	},
+	{
+		"label" : "Found in these drugs :", // oboInOwl:hasRelatedSynonym
+		"itemType": "uri",        // array of String
+		"match" : "dpd:xATC"
+	}
 ]
 		}
 	]
@@ -25,9 +35,9 @@ var dinMap = {
 "label" : "",
 "containers" : [
 	{
-		"label" : "Is an active component in :", // oboInOwl:hasRelatedSynonym
+		"label" : " :", // oboInOwl:hasRelatedSynonym
 		"itemType": "uri",        // array of String
-		"match" : "oboInOwl:hasRelatedSynonym"
+		"match" : ""
 	},
 ]
 		}

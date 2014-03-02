@@ -52,19 +52,18 @@ Controller.prototype.updateMappings = function(mappingObj) {
   NA
 */
 Controller.prototype.describeURI = function(uri) {
-  
+	console.log("describeURI");
+  this.fetchURL(this.queryer.buildDescribe(this.currentNamespace, "describe", uri));
+}
 
-  this.fetchURL(this.queryer.buildDescribe(this.currentNamespace, uri));
+Controller.prototype.describeATC = function(uri) {
+	console.log("describeATC");
+  this.fetchURL(this.queryer.buildDescribe(this.currentNamespace, "describeATC", uri));
+}
 
-  // var urlConfig = { "namespace" : this.currentNamespace,
-  //                   "method" : "describe",
-  //                   "format" : "json-ld",
-  //                   "parameters" : {
-  //                     "uri" : uri
-  //                   }
-  //                 };
-
-
+Controller.prototype.describeDIN = function(uri) {
+	console.log("describeDIN");
+  this.fetchURL(this.queryer.buildDescribe(this.currentNamespace, "describeDIN", uri));
 }
 
 /*
