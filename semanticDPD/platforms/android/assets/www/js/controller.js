@@ -18,7 +18,7 @@ function Controller() {
   this.translator = new Translator(mappingObj);
   this.viewer = new Viewer();
   this.queryer = new Queryer();
-  this.currentNamespace = "ontobee";
+  this.currentNamespace = "dpd";
 }
 
 /*
@@ -52,19 +52,23 @@ Controller.prototype.updateMappings = function(mappingObj) {
   NA
 */
 Controller.prototype.describeURI = function(uri) {
-  
+	console.log("describeURI");
+  this.fetchURL(this.queryer.buildDescribe(this.currentNamespace, "describe", uri));
+}
 
-  this.fetchURL(this.queryer.buildDescribe(this.currentNamespace, uri));
+Controller.prototype.describeATC = function(uri) {
+	console.log("describeATC");
+  this.fetchURL(this.queryer.buildDescribe(this.currentNamespace, "describeATC", uri));
+}
 
-  // var urlConfig = { "namespace" : this.currentNamespace,
-  //                   "method" : "describe",
-  //                   "format" : "json-ld",
-  //                   "parameters" : {
-  //                     "uri" : uri
-  //                   }
-  //                 };
+Controller.prototype.describeDIN = function(uri) {
+	console.log("describeDIN");
+  this.fetchURL(this.queryer.buildDescribe(this.currentNamespace, "describeDIN", uri));
+}
 
-
+Controller.prototype.describeDrugBank= function(uri) {
+	console.log("describeDrugBank");
+  this.fetchURL(this.queryer.buildDescribe(this.currentNamespace, "describe", uri));
 }
 
 /*
@@ -78,7 +82,7 @@ Controller.prototype.describeURI = function(uri) {
   NA
 */
 Controller.prototype.parseJSONLD = function(jsonLD) {
-  console.log("jsonLD: " + jsonLD);
+ // console.log("jsonLD: " + jsonLD);
   this.viewer.refreshPage(this.translator.translate(jsonLD));
 }
 
@@ -95,7 +99,7 @@ Controller.prototype.mappertoolUpdate = function() {
     url: url,
     dataType: "jsonp",
     success: function(data) {
-      console.log(data);
+ //     console.log(data);
       controller.parseJSONLD(data);
     }
   });
@@ -116,13 +120,12 @@ Controller.prototype.mappertoolUpdate = function() {
 */
 Controller.prototype.autoCompleteSearch = function(kword) {
 
-  console.log(kword);
+  //console.log(kword);
 
   var urlConfig = { "namespace" : this.currentNamespace,
-                    "method" : "search_ns",
+                    "method" : "search_all",
                     "format" : "json-ld",
                     "parameters" : {
-                      "parm2" : "DOID",
                       "parm1" : kword
                     }
                   };
@@ -132,7 +135,7 @@ Controller.prototype.autoCompleteSearch = function(kword) {
     context: this,
     dataType: "jsonp"
   }).done(function(data){
-    console.log(data);
+    //console.log(data);
     this.viewer.buildSearchListItems(data);
   });
   
@@ -196,7 +199,7 @@ Controller.prototype.fetchURL = function(restURL) {
     context: this,
     dataType: "jsonp"
   }).done(function(data){
-    console.log(data);
+    //console.log(data);
     this.parseJSONLD(data);
   });
 }
@@ -230,4 +233,27 @@ Controller.prototype.getLabel = function(uri) {
   }).done(function(data){
     return data["rdfs:label"];
   });
+}
+
+function getLitteral(obj) {
+	var value = "Unknown"
+	if (typeof obj == "object") {
+		if($.isArray(obj) == true){
+			for(var i=0; i < obj.length; i++){
+				if (obj[i]["@language"] == "en") {
+					value=obj[i]["@value"]
+				}
+			}
+		}
+		if($.isArray(obj) == false){
+			value=obj["@value"]
+		}
+	}
+	if (typeof obj != "object") {
+		value=obj
+	}
+	if (obj == undefined) {
+		value="Unknown: Undefined"
+	}
+	return value;
 }

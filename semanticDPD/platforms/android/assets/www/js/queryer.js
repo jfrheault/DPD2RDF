@@ -26,8 +26,8 @@ Arguments:
 Return:
   restURL: the URL ready to be queryed
 */
-Queryer.prototype.buildDescribe = function(namespace, uri) {
-  return this.sparqlPoint + "/" + namespace + "/describe/json-ld?uri=" + uri;
+Queryer.prototype.buildDescribe = function(namespace, method, uri) {
+  return this.sparqlPoint + "/" + namespace + "/" +method+"/json-ld?uri=" + uri;
 }
 
 /*

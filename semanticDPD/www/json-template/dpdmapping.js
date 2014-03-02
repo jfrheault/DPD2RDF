@@ -32,11 +32,11 @@ var dinMap = {
 	],
 	"sections" : [
 		{
-"label" : "",
+"label" : "Dosage",
 "containers" : [
 	{
-		"label" : " :", // oboInOwl:hasRelatedSynonym
-		"itemType": "uri",        // array of String
+		"label" : "", // oboInOwl:hasRelatedSynonym
+		"itemType": "literal",        // array of String
 		"match" : ""
 	},
 ]

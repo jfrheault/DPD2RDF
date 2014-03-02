@@ -12,9 +12,9 @@ function Viewer() {
   this.pageTagList=["searchPage","describePage","aboutPage"];
   this.generateHeaders();
   this.generateFooters();
-	/*for (var i=0; i < this.pageTagList.length ;i++){*/
-	/*$("#"+this.pageTagList[i]).trigger('refresh');*/
-	/*}*/
+	for (var i=0; i < this.pageTagList.length ;i++){
+		$("#"+this.pageTagList[i]).trigger('refresh');
+	}
 }
 
 
@@ -32,23 +32,12 @@ function Viewer() {
 Viewer.prototype.generateHeaders = function(){
   var headerHTML = '<!-- HEADER HTML -->'
     +' 	<div id="header" data-position="fixed" data-id="persistent" class="ui-state-persist" data-role="header" data-theme="c">'
-    +'     <div data-role="popup" id="popupLogo" class="ui-content" style="overflow-y:scroll;">'
-    +'       <fieldset data-role="controlgroup" data-theme="b" id="dbPick" data-mini="true">'
-    +'         <input type="radio" name="radio-choice" id="radio-bio2rdf" value="bio2rdf" checked="true" />'
-    +'         <label for="radio-bio2rdf" style="text-align:center"><img src="img/bio2rdf.png" width="100px"></label>'
-    +'         <input type="radio" name="radio-choice" id="radio-go" value="go" />'
-    +'         <label for="radio-go" style="text-align:center"><img src="img/go.png" width="100px"></label>'
-    +'         <input type="radio" name="radio-choice" id="radio-do" value="do" />'
-    +'         <label for="radio-do" style="text-align:center"><img src="img/do.png" width="100px"></label>'
-    +'         <input type="radio" name="radio-choice" id="radio-chebi" value="chebi" />'
-    +'         <label for="radio-chebi" style="text-align:center"><img src="img/chebi.png" width="100px"></label>'
-    +'       </fieldset>'
-    +'     </div>'
     +'     <!-- Header Logo -->'
     +'     <h1 style="text-align:center;font-family:verdana;font-size:12px;font-style:italic">'
-    +'       <a href="#popupLogo" data-rel="popup"><img id="logoHead" src="img/bio2rdf.png" width="80px"/></a>'
+		/*+' 			DPD2RDF'*/
+		+' 			 <img src="img/dpd_logo.png" style="width: 40%; height: 40%">'
+		/*+'       <a href="#popupLogo" data-rel="popup"><img id="logoHead" src="img/bio2rdf.png" width="80px"/></a>'*/
     +'     </h1>'
-    +'     <a href="#searchPanel" id="searchButton" data-inline="true" data-icon="search" data-iconpos="notext"></a>   '
     +'     <div id="describeHeader">'
     +'       <h1 style="text-align:center"></h1>'
     +'     </div>           '
@@ -73,7 +62,7 @@ Viewer.prototype.generateHeaders = function(){
   NA
 */
 Viewer.prototype.generateFooters = function(){
-  var describeFooterHTML = '<div id="footer" data-id="persistent" data-role="footer" data-position="fixed" data-theme="c">'
+  var describeFooterHTML = '<div id="footer" data-id="persistent" data-role="footer" data-position="fixed" data-theme="c" style="position:fixed; bottom:0 !important;">'
     +'<div data-role="navbar">'
     +'	<ul>'
     +'		<li><a href="#searchPage" data-transition="slide" data-direction="reverse" data-icon="search">Search</a></li>'
@@ -83,7 +72,7 @@ Viewer.prototype.generateFooters = function(){
     +' 	</div><!-- /navbar -->'
     +' </div> <!-- FOOTER -->'
 
-  var searchFooterHTML = '<div id="footer" data-role="footer" data-id="persistent" data-position="fixed" data-theme="c">'
+  var searchFooterHTML = '<div id="footer" data-role="footer" data-id="persistent" data-position="fixed" data-theme="c" style="position:fixed; bottom:0 !important;">'
     +'<div data-role="navbar">'
     +'	<ul>'
     +'		<li><a href="#searchPage" class="ui-btn-active ui-state-persist"  data-icon="search">Search</a></li>'
@@ -93,7 +82,7 @@ Viewer.prototype.generateFooters = function(){
     +'</div><!-- /navbar -->'
     +'</div> <!-- FOOTER -->'
   
-  var aboutFooterHTML = '<div id="footer" data-role="footer" data-id="persistent" data-position="fixed" data-theme="c">'
+  var aboutFooterHTML = '<div id="footer" data-role="footer" data-id="persistent" data-position="fixed" data-theme="c" style="position:fixed; bottom:0 !important;">'
     +'<div data-role="navbar">'
     +'	<ul>'
     +'		<li><a href="#searchPage" data-transition="slide" data-direction="reverse" data-icon="search">Search</a></li>'
@@ -128,6 +117,7 @@ Viewer.prototype.generateFooters = function(){
   NA
 */
 Viewer.prototype.refreshPage = function(pageObject) {
+	console.log(pageObject)
   $("#sections").html("");
   var header = pageObject.header;
   var sections = pageObject.sections;
@@ -179,9 +169,12 @@ Viewer.prototype.refreshPage = function(pageObject) {
 	  var uriTags=[];
 	  for (var itemIndex in container.items){
 	    var item=container.items[itemIndex];
-	    uriTags.push("<a class='uriButton' uri='"+item.uri+"'>"+item.label+"</a>");
+			console.log(item);
+	    uriTags.push("<a class='uriButtondefault' uri='"+item.uri+"'>"+item.label+"</a>");
 	  }
-	  this.appendCollapsible("section"+sectionIndex,container.label,uriTags);
+		if (uriTags.length != 0) {
+			this.appendCollapsible("section"+sectionIndex,container.label,uriTags);
+		}
 	}
 	break;
       default:
@@ -264,17 +257,41 @@ Viewer.prototype.searchResultsIterator = function(data,$listview) {
 
   for (var i in itemsArray){
     id = itemsArray[i]["@id"];
-    label = itemsArray[i]["rdfs:label"];
+		console.log(getLitteral(itemsArray[i]["rdfs:label"]))
+    label = getLitteral(itemsArray[i]["rdfs:label"]);
     if(label ==  undefined){
       label = itemsArray[i]["oboInOwl:hasExactSynonym"];
     }
     var idA = id.split(":");
-    uri = context[idA[0]] + idA[1];
-    $listview.append(this.buildButton(uri,label));
+		if (idA[0]=="http"){
+		uri = "http:"+idA.slice(1).join(":");
+		} else {
+			uri = context[idA[0]] + idA.slice(1).join(":");
+		}
+		var uriType=this.getUriType(uri);
+    $listview.append(this.buildButton(uri,uriType,label));
   }
 
 }
 
+Viewer.prototype.getUriType = function(uri) {
+	uriElements=uri.split(":");
+	var type = "default"
+	switch(uriElements.slice(0,2).join(":")){
+		case "http://bio2rdf.org/din":
+			type = "din"
+			break;
+		case "http://bio2rdf.org/ing":
+			type = "atc"
+			break;
+		case "http://bio2rdf.org/drugbank":
+			type = "drugBank"
+			break;
+		default:
+			type = "default"
+	}
+	return type;
+}
 
 /*
 
@@ -295,6 +312,7 @@ Viewer.prototype.extractContext = function(context, atIdObject) {
 }
 
 // Build button for searcher
-Viewer.prototype.buildButton = function(uri,label){
-  return "<li class='uriButton' "+"uri='"+uri+"'>"+"<a>"+label+"</a></li>";
+Viewer.prototype.buildButton = function(uri,uriType,label){
+  return "<li class='uriButton"+uriType+"' "+"uri='"+uri+"'>"+"<a>"+label+"</a></li>";
 }
+
