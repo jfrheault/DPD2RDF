@@ -56,9 +56,9 @@ Controller.prototype.describeURI = function(uri) {
   this.fetchURL(this.queryer.buildDescribe(this.currentNamespace, "describe", uri));
 }
 
-Controller.prototype.describeATC = function(uri) {
+Controller.prototype.describeING = function(uri) {
 	console.log("describeATC");
-  this.fetchURL(this.queryer.buildDescribe(this.currentNamespace, "describeATC", uri));
+  this.fetchURL(this.queryer.buildDescribe(this.currentNamespace, "describeING", uri));
 }
 
 Controller.prototype.describeDIN = function(uri) {

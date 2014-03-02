@@ -164,7 +164,7 @@ Viewer.prototype.refreshPage = function(pageObject) {
 	if (container.items != undefined) {
 	  var capitalized=[];
 	  for (var itemIndex in container.items) {
-			console.log(container.items[itemIndex]);
+			//console.log(container.items[itemIndex]);
 	    capitalized.push(capitalize(String(container.items[itemIndex])));
 	  }
 	  this.appendCollapsible("section"+sectionIndex,container.label,capitalized.sort());
@@ -175,8 +175,12 @@ Viewer.prototype.refreshPage = function(pageObject) {
 	  var uriTags=[];
 	  for (var itemIndex in container.items){
 	    var item=container.items[itemIndex];
-			console.log(item);
-	    uriTags.push("<a class='uriButtondefault' uri='"+item.uri+"'>"+item.label+"</a>");
+			if (container.label=="Ingredient Information" && 	itemIndex !=0) {
+				uriTags.push(item.label);
+			} else {
+				var uriType=getUriType(item.uri);
+	    	uriTags.push("<a class='uriButton"+uriType+"' uri='"+item.uri+"'>"+item.label+"</a>");
+			}
 	  }
 		if (uriTags.length != 0) {
 			this.appendCollapsible("section"+sectionIndex,container.label,uriTags);
@@ -263,7 +267,7 @@ Viewer.prototype.searchResultsIterator = function(data,$listview) {
 
   for (var i in itemsArray){
     id = itemsArray[i]["@id"];
-		console.log(getLitteral(itemsArray[i]["rdfs:label"]))
+		//console.log(getLitteral(itemsArray[i]["rdfs:label"]))
     label = getLitteral(itemsArray[i]["rdfs:label"]);
     if(label ==  undefined){
       label = itemsArray[i]["oboInOwl:hasExactSynonym"];
@@ -274,13 +278,13 @@ Viewer.prototype.searchResultsIterator = function(data,$listview) {
 		} else {
 			uri = context[idA[0]] + idA.slice(1).join(":");
 		}
-		var uriType=this.getUriType(uri);
+		var uriType=getUriType(uri);
     $listview.append(this.buildButton(uri,uriType,label));
   }
 
 }
 
-Viewer.prototype.getUriType = function(uri) {
+function getUriType(uri) {
 	uriElements=uri.split(":");
 	var type = "default"
 	switch(uriElements.slice(0,2).join(":")){
@@ -288,7 +292,7 @@ Viewer.prototype.getUriType = function(uri) {
 			type = "din"
 			break;
 		case "http://bio2rdf.org/ing":
-			type = "atc"
+			type = "ing"
 			break;
 		case "http://bio2rdf.org/drugbank":
 			type = "drugBank"

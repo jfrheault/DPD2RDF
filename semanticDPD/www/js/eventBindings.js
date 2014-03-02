@@ -15,9 +15,9 @@ function eventBindings(){
     return false;
   });
 
-  $(document).on("click", ".uriButtonatc", function(){
-		controller.updateMappings(atcMap);
-    controller.describeATC($(this).attr('uri'));
+  $(document).on("click", ".uriButtoning", function(){
+		controller.updateMappings(ingMap);
+    controller.describeING($(this).attr('uri'));
 		$("#logo").html("<img src='img/dpd_icon.png'>DPD</img>")
     $.mobile.navigate("#describePage", {transition : "slide"});
     return false;

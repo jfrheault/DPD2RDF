@@ -29,8 +29,8 @@ Translator.prototype.updateMappings = function(mappingObj) {
    
 */
 Translator.prototype.translate = function(jsonld) {
-  console.log(jsonld);
-	console.log(this.mappingObj)
+	console.log(jsonld);
+	/*console.log(this.mappingObj)*/
   context = jsonld["@context"]
   atIdObject = {}
   this.extractContext(context,atIdObject);
@@ -67,10 +67,10 @@ Translator.prototype.translate = function(jsonld) {
       var predicate = this.mappingObj.sections[i].containers[j].match
       var elem = { "label" : label, "itemType" : type, "items" : [] }
       // il faut checker le type
-			console.log(this.mappingObj.sections[i].containers[j]);
-			console.log(predicate);
-			console.log(jsonld[predicate])
-			console.log(getLitteral(jsonld[predicate]))
+			//console.log(this.mappingObj.sections[i].containers[j]);
+			//console.log(predicate);
+			//console.log(jsonld[predicate])
+			//console.log(getLitteral(jsonld[predicate]))
       if (type == "literal") {
 				elem.items.push(getLitteral(jsonld[predicate]))
       }
@@ -78,26 +78,62 @@ Translator.prototype.translate = function(jsonld) {
 				if ($.isArray(jsonld[predicate]) == false ) {
 					var label = jsonld[predicate]["@id"]
 					var idA = jsonld[predicate]["@id"].split(":")
-					var uri = context[idA[0]] + idA[1];
-					var obj = { "label" : label, "uri" : uri };
+					//console.log(idA);
+				
+					if (idA[0]=="http"){
+					var uri = "http:"+idA.slice(1).join(":");
+					} else {
+						var uri = context[idA[0]] + idA.slice(1).join(":");
+					}		
+
+					//var uri = context[idA[0]] + idA[1];
+					var obj = { "label" : uri, "uri" : uri };
 					elem.items.push(obj);
 				}
 				if ($.isArray(jsonld[predicate]) == true ) {
 					for (var k in jsonld[predicate]) {
 						var label = jsonld[predicate][k]["@id"]; // TODO: ask queryer for label
 						var idA = jsonld[predicate][k]["@id"].split(":");
-						var uri = context[idA[0]] + idA[1];
-						console.log(idA[0]);
-						console.log(idA[1]);
-						var obj = { "label" : label, "uri" : uri };
+						/*console.log(idA);*/
+						if (idA[0]=="http"){
+							var uri = "http:"+idA.slice(1).join(":");
+						} else {
+							var uri = context[idA[0]] + idA.slice(1).join(":");
+						}		
+						//var uri = context[idA[0]] + idA[1];
+						//console.log(idA[0]);
+						//console.log(idA[1]);
+						var obj = { "label" : uri, "uri" : uri };
 						elem.items.push(obj);
 					}
 				}
       }
+      else if (type == "group"){
+        for (var z in predicate) {
+          elem.itemType =  "uri";
+          if (predicate[z].type == "uri"){
+            var locUri = jsonld[predicate[z]["predicate"]]["@id"];
+						var idA = locUri.split(":");
+						var uri = context[idA[0]] + idA.slice(1).join(":");
+            var obj = {"uri": uri, "label" : uri};
+            elem.items.push(obj);
+          }else {
+            //console.log(jsonld[predicate[z]["predicate"]]);
+            // elem.items.push(predicate[z].label + jsonld[predicate[z]["predicate"]] );
+            if (jsonld[predicate[z]["predicate"]] != ""){
+              var elementOut = predicate[z]["label"] + " = ";
+              elementOut += getLitteral(jsonld[predicate[z]["predicate"]]);
+              var obj = {"uri": "", "label" : elementOut};
+              elem.items.push(obj);
+            }
+          }
+        }
+      }
       // ajouter elem
       pageObject['sections'][i].containers.push(elem)
     }
   }
+	/*console.log(pageObject);*/
   return pageObject; 
 }
 
