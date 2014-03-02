@@ -44,7 +44,11 @@ Translator.prototype.translate = function(jsonld) {
     for (var key in this.mappingObj.header[i]){
       var predicate = this.mappingObj.header[i][key];
       var elem = {};
+			if (key=="picture"){
+				elem[key]=jsonld[predicate]["@id"]
+			} else {
 			elem[key] = getLitteral(jsonld[predicate]);
+			}
 			pageObject['header'].push(elem);
     }
   }
@@ -65,6 +69,7 @@ Translator.prototype.translate = function(jsonld) {
       // il faut checker le type
 			console.log(this.mappingObj.sections[i].containers[j]);
 			console.log(predicate);
+			console.log(jsonld[predicate])
 			console.log(getLitteral(jsonld[predicate]))
       if (type == "literal") {
 				elem.items.push(getLitteral(jsonld[predicate]))

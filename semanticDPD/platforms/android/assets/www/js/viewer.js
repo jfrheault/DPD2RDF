@@ -118,6 +118,12 @@ Viewer.prototype.generateFooters = function(){
 */
 Viewer.prototype.refreshPage = function(pageObject) {
 	console.log(pageObject)
+  $("logo").html("");
+  $("title").html("");
+  $("id").html("");
+  $("picture").html("");
+  $("namespace").html("");
+  $("description").html("");
   $("#sections").html("");
   var header = pageObject.header;
   var sections = pageObject.sections;
@@ -159,7 +165,8 @@ Viewer.prototype.refreshPage = function(pageObject) {
 	if (container.items != undefined) {
 	  var capitalized=[];
 	  for (var itemIndex in container.items) {
-	    capitalized.push(capitalize(container.items[itemIndex]));
+			console.log(container.items[itemIndex]);
+	    capitalized.push(capitalize(String(container.items[itemIndex])));
 	  }
 	  this.appendCollapsible("section"+sectionIndex,container.label,capitalized.sort());
 	}

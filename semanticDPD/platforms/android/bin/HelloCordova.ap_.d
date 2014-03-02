@@ -13,10 +13,13 @@
 /home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/bin/res/drawable-mdpi/icon.png \
 /home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www \
 /home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/jsonlds \
+/home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/DPD2RDF.war \
 /home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/img \
 /home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/js \
 /home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/cordova_plugins.js \
+/home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/WEB-INF \
 /home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/index.html \
+/home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/web.xml \
 /home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/json-template \
 /home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/server.js \
 /home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/mappings \
@@ -46,6 +49,7 @@
 /home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/js/lib/jquery-ui.min.js \
 /home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/js/lib/jquery.ui.touch-punch.min.js \
 /home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/js/lib/jquery.mobile.swipeup-swipedown.js \
+/home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/json-template/wikipedia2.js \
 /home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/json-template/mapping-json.json \
 /home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/json-template/doid.js \
 /home/jfrheault/universite/bio2rdf/DPD2RDF/semanticDPD/platforms/android/assets/www/json-template/drugbank_2.js \
