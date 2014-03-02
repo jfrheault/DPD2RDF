@@ -41,7 +41,7 @@ Translator.prototype.translate = function(jsonld) {
   // Parse HEADER data
   pageObject['header'] = [];
   for (var i in this.mappingObj.header) {
-    for (var key in mappingObj.header[i]){
+    for (var key in this.mappingObj.header[i]){
       var predicate = this.mappingObj.header[i][key];
       var elem = {};
 			elem[key] = getLitteral(jsonld[predicate]);
@@ -63,8 +63,11 @@ Translator.prototype.translate = function(jsonld) {
       var predicate = this.mappingObj.sections[i].containers[j].match
       var elem = { "label" : label, "itemType" : type, "items" : [] }
       // il faut checker le type
+			console.log(this.mappingObj.sections[i].containers[j]);
+			console.log(predicate);
+			console.log(getLitteral(jsonld[predicate]))
       if (type == "literal") {
-				elem.items = jsonld[predicate]
+				elem.items.push(getLitteral(jsonld[predicate]))
       }
       else if (type == "uri") {
 				if ($.isArray(jsonld[predicate]) == false ) {

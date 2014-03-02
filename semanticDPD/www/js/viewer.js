@@ -263,7 +263,11 @@ Viewer.prototype.searchResultsIterator = function(data,$listview) {
       label = itemsArray[i]["oboInOwl:hasExactSynonym"];
     }
     var idA = id.split(":");
-    uri = context[idA[0]] + idA.slice(1).join(":");
+		if (idA[0]=="http"){
+		uri = "http:"+idA.slice(1).join(":");
+		} else {
+			uri = context[idA[0]] + idA.slice(1).join(":");
+		}
 		var uriType=this.getUriType(uri);
     $listview.append(this.buildButton(uri,uriType,label));
   }
@@ -277,7 +281,7 @@ Viewer.prototype.getUriType = function(uri) {
 		case "http://bio2rdf.org/din":
 			type = "din"
 			break;
-		case "http://bio2rdf.org/atc":
+		case "http://bio2rdf.org/ing":
 			type = "atc"
 			break;
 		case "http://bio2rdf.org/drugbank":
